@@ -1,15 +1,17 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
     <div class="container">
-      <router-link
-        :to="isAuthenticated() ? {name: 'covid-19'} : {name: 'login'}"
-        class="custom-navbar-brand"
-      >COVID 19</router-link>
-      <span class="text-white px-3">|</span>
-      <router-link
-        :to="isAuthenticated() ? {name: 'dashboard'} : {name: 'login'}"
-        class="custom-navbar-brand"
-      >Country Comparasion</router-link>
+      <div class="custom-navbar-brand-wrapper">
+        <router-link
+          :to="isAuthenticated() ? {name: 'covid-19'} : {name: 'login'}"
+          class="custom-navbar-brand-item"
+        >COVID 19</router-link>
+        <span class="text-white custom-navbar-brand-devider">|</span>
+        <router-link
+          :to="isAuthenticated() ? {name: 'dashboard'} : {name: 'login'}"
+          class="custom-navbar-brand-item"
+        >Country Comparasion</router-link>
+      </div>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         <span class="navbar-toggler-icon"></span>
@@ -48,13 +50,29 @@ export default {
 </script>
 
 <style scoped>
-.custom-navbar-brand {
+.custom-navbar-brand-item {
   font-size: 20px;
   text-decoration: none;
   color: #fff;
 }
 
+.custom-navbar-brand-devider {
+  font-size: 20px;
+  padding: 10px;
+}
+
 .router-link-active {
   color: yellow;
+}
+
+/* Max width 600px */
+@media only screen and (max-width: 600px) {
+  .custom-navbar-brand-item {
+    font-size: 16px;
+  }
+
+  .custom-navbar-brand-devider {
+    font-size: 16px;
+  }
 }
 </style>

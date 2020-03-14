@@ -56,4 +56,15 @@ export default {
 .total_recovered p {
   color: #8aca2b;
 }
+
+/* Max width 600px */
+@media only screen and (max-width: 600px) {
+  .stats h1 {
+    font-size: 30px;
+  }
+
+  .stats p {
+    font-size: 46px;
+  }
+}
 </style>
