@@ -2,9 +2,15 @@
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
     <div class="container">
       <router-link
+        :to="isAuthenticated() ? {name: 'covid-19'} : {name: 'login'}"
+        class="custom-navbar-brand"
+      >COVID 19</router-link>
+      <span class="text-white px-3">|</span>
+      <router-link
         :to="isAuthenticated() ? {name: 'dashboard'} : {name: 'login'}"
-        class="navbar-brand"
+        class="custom-navbar-brand"
       >Country Comparasion</router-link>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,7 +30,7 @@
 </template>
 
 <script>
-import { authenticationMixin } from "../mixins/authenticationMixin";
+import { authenticationMixin } from "../../mixins/authenticationMixin";
 
 export default {
   name: "navbar",
@@ -42,4 +48,13 @@ export default {
 </script>
 
 <style scoped>
+.custom-navbar-brand {
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.router-link-active {
+  color: yellow;
+}
 </style>

@@ -59,7 +59,7 @@ const webpackConfig = {
     new VueLoaderPlugin(),
     new HtmlPlugin({
       template: "index.html",
-      favicon: "./src/assets/favicon.png",
+      favicon: "./src/assets/earth.png",
       chunksSortMode: "dependency"
     })
   ]

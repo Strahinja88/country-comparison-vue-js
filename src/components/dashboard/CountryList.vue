@@ -72,7 +72,8 @@ export default {
   data() {
     return {
       countries: [],
-      filteredCountries: []
+      filteredCountries: [],
+      corona: null
     };
   },
   created() {

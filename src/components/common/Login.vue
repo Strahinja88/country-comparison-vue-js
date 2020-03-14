@@ -42,8 +42,8 @@
 </template>
 
 <script>
-import { user } from "../service/user.js";
-import { validationMixin } from "../mixins/validationMixin";
+import { user } from "../../service/user.js";
+import { validationMixin } from "../../mixins/validationMixin";
 
 export default {
   name: "login",
