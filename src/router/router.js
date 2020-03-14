@@ -35,7 +35,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name === "dashboard" || to.name === "covid-19") {
+  if (to.name === "dashboard" || to.name === "covid-19" || to.path === "/") {
     if (!localStorage.user) {
       next("/login");
     }

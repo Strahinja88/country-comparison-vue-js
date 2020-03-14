@@ -3,7 +3,7 @@
     <total-cases></total-cases>
     <table class="table table-bordered">
       <thead>
-        <tr class="table_head_row">
+        <tr id="sticky" class="table_head_row">
           <th>#</th>
           <th @click="sort('country_name')">
             Country Name
@@ -74,7 +74,8 @@ export default {
   data() {
     return {
       cases: [],
-      update: null
+      update: null,
+      isFixed: false
     };
   },
   mounted() {
@@ -88,14 +89,24 @@ export default {
 </script>
 
 <style scoped>
+table {
+  position: relative;
+}
+
 .table_head_row {
   color: #666666;
-  border-bottom: 3px solid #666666;
   cursor: pointer;
 }
 
 .table_head_row th i {
   padding-left: 5px;
+}
+
+.table_head_row th {
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }
 
 .table_body_row {
