@@ -20,16 +20,9 @@ import { totalCasesService } from "../../service/httpService";
 
 export default {
   name: "total-cases",
+  props: ["stats"],
   data() {
-    return {
-      stats: ""
-    };
-  },
-  mounted() {
-    totalCasesService().then(res => {
-      this.stats = res.data;
-      console.log(res.data);
-    });
+    return {};
   }
 };
 </script>

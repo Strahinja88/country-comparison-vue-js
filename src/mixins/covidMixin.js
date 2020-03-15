@@ -2,7 +2,8 @@ export const covidMixin = {
   data() {
     return {
       currentSort: "cases",
-      currentSortDir: "desc"
+      currentSortDir: "desc",
+      searchText: ""
     };
   },
   methods: {
@@ -30,11 +31,19 @@ export const covidMixin = {
           ? "fa fa-sort-amount-asc"
           : "fa fa-sort-amount-desc";
       return "fa fa-sort";
+    },
+    // compare values
+    filtered(value) {
+      return function(x) {
+        return (
+          x.country_name.toLowerCase().includes(value.toLowerCase()) || !value
+        );
+      };
     }
   },
   computed: {
     sortedCases: function() {
-      return this.cases.sort((a, b) => {
+      return this.cases.filter(this.filtered(this.searchText)).sort((a, b) => {
         let modifier = 1;
 
         if (this.currentSortDir === "desc") modifier = -1;

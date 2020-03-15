@@ -1,6 +1,15 @@
 <template>
   <div class="container">
-    <total-cases></total-cases>
+    <total-cases :stats="stats"></total-cases>
+    <div class="active-cyan-3 active-cyan-4 mb-4">
+      <input
+        v-model="searchText"
+        class="form-control"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+      />
+    </div>
     <table class="table table-bordered">
       <thead>
         <tr id="sticky" class="table_head_row">
@@ -56,12 +65,29 @@
           <td>{{item.region !== "" ? item.region : null}}</td>
         </tr>
       </tbody>
+
+      <tbody>
+        <tr class="table_body_row">
+          <td>#</td>
+          <td :style="{ color: 'red', textAlign: 'left' }">Total:</td>
+          <td>{{stats.total_cases}}</td>
+          <td :style="{ backgroundColor: '#FFEEAA' }">{{stats.new_cases}}</td>
+          <td></td>
+          <td>{{stats.total_deaths}}</td>
+          <td :style="{backgroundColor: 'red', color: 'white'}">{{stats.new_deaths}}</td>
+          <td>{{stats.total_recovered}}</td>
+          <td></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
 
 <script>
-import { casesByCountryService } from "../../service/httpService";
+import {
+  casesByCountryService,
+  totalCasesService
+} from "../../service/httpService";
 import { covidMixin } from "../../mixins/covidMixin";
 import TotalCases from "./TotalCases";
 
@@ -75,8 +101,14 @@ export default {
     return {
       cases: [],
       update: null,
-      isFixed: false
+      stats: ""
     };
+  },
+  created() {
+    totalCasesService().then(res => {
+      this.stats = res.data;
+      console.log(res.data);
+    });
   },
   mounted() {
     casesByCountryService().then(res => {
