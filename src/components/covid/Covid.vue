@@ -26,9 +26,9 @@
             New Cases
             <i :class="sortClass('new_cases')"></i>
           </th>
-          <th @click="sort('serious_critical')">
+          <th @click="sort('active_cases')">
             Active Cases
-            <i :class="sortClass('serious_critical')"></i>
+            <i :class="sortClass('active_cases')"></i>
           </th>
           <th @click="sort('deaths')">
             Total Deaths
@@ -42,9 +42,13 @@
             Total Recovered
             <i :class="sortClass('total_recovered')"></i>
           </th>
-          <th @click="sort('region')">
+          <th @click="sort('serious_critical')">
             Serious, Critical
-            <i :class="sortClass('region')"></i>
+            <i :class="sortClass('serious_critical')"></i>
+          </th>
+          <th @click="sort('total_cases_per_1m_population')">
+            Tot Cases/1M pop
+            <i :class="sortClass('total_cases_per_1m_population')"></i>
           </th>
         </tr>
       </thead>
@@ -56,13 +60,14 @@
           <td
             :style="[isYellow(item) ? { backgroundColor: '#FFEEAA' } : { backgroundColor: '#fff' }]"
           >{{item.new_cases !== "0" ? "+" + item.new_cases : null}}</td>
-          <td>{{item.serious_critical !== "0" ? item.serious_critical : null}}</td>
+          <td>{{item.active_cases !== "0" ? item.active_cases : null}}</td>
           <td>{{item.deaths !== "0" ? item.deaths : null}}</td>
           <td
             :style="[isRed(item) ? {backgroundColor: 'red', color: 'white'} : {backgroundColor: 'white', color: 'black'}]"
           >{{item.new_deaths !== "0" ? "+" + item.new_deaths : null}}</td>
           <td>{{item.total_recovered !== "0" ? item.total_recovered : null}}</td>
-          <td>{{item.region !== "" ? item.region : null}}</td>
+          <td>{{item.serious_critical !== "" ? item.serious_critical : null}}</td>
+          <td>{{item.total_cases_per_1m_population !== "" ? item.total_cases_per_1m_population : null}}</td>
         </tr>
       </tbody>
 
